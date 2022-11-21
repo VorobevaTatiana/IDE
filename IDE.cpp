@@ -12,7 +12,10 @@ int main() {
         return 1;
     }
     std::ofstream out("out.txt");
-
+    if (!out) {
+        std::cout << "Файл не найден\n";
+        return 1;
+    }
     int size;
     in >> size;
     int* arr = new int[size];
@@ -35,7 +38,7 @@ int main() {
     tmp2 = arr2[size2 - 1];
     for (int i = size2 - 1; i >= 0; i--)
     {
-        arr2[i] = arr2[i - 1];
+        arr2[i] = arr2[i + 1];
 
     }
     arr2[0] = tmp2;
@@ -66,6 +69,7 @@ int main() {
 
     in.close();
     out.close();
+    delete[] arr2;
     delete[] arr;
     return 0;
 }
